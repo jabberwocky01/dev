@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+  <string-array name="cuts_range_options">
+    <item>Sadece güncel</item>
+    <item>Tüm yüklenmiş (max 1 aylık)</item>
+  </string-array>
+
+  <string-array name="cuts_range_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  
+  <string-array name="cuts_freq_options">
+    <item>Hiçbir zaman</item>
+    <item>Saatte bir</item>
+    <item>3 saatte bir</item>
+    <item>6 saatte bir</item>
+  </string-array>
+  
+  <string-array name="cuts_freq_values">
+    <item>-1</item>
+    <item>1</item>
+    <item>3</item>
+    <item>6</item>
+  </string-array>
+
+  <string-array name="cuts_order_criteria_options">
+    <item>Başlangıç tarihine göre</item>
+    <item>Bitiş tarihine göre</item>
+  </string-array>
+
+  <string-array name="cuts_order_criteria_values">
+    <item>start</item>
+    <item>end</item>
+  </string-array>
+
+  <string-array name="cuts_order_options">
+    <item>Artan</item>
+    <item>Azalan</item>
+  </string-array>
+
+  <string-array name="cuts_order_values">
+    <item>asc</item>
+    <item>desc</item>
+  </string-array>
+  
+  <string-array name="cuts_share_opts">
+    <item>twi</item>
+    <item>face</item>
+    <item>mail</item>
+    <item>mes</item>
+    <item>whatsapp</item>
+  </string-array>
+  
+  <string-array name="cuts_lang_options">
+    <item>Türkçe</item>
+    <item>İngilizce</item>
+  </string-array>
+
+  <string-array name="cuts_lang_values">
+    <item>tr</item>
+    <item>en</item>
+  </string-array>
+  
+</resources>

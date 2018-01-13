@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/cuts_lang_header" >
+         <ListPreference
+             android:defaultValue="tr"
+             android:dialogTitle="@string/cuts_lang"
+             android:entries="@array/cuts_lang_options"
+             android:entryValues="@array/cuts_lang_values"
+             android:key="pref_cuts_lang_option"
+             android:summary="@string/cuts_lang_sum"
+             android:title="@string/cuts_lang" />
+    </PreferenceCategory>
+  
+</PreferenceScreen>

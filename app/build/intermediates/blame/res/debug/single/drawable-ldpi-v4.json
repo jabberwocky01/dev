@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\ic_launcher.png",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\ic_menu_preferences.png",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\drawable-ldpi\\ic_menu_preferences.png"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\notification_icon.png",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\drawable-ldpi\\notification_icon.png"
+    }
+]

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\ANDROID\dev\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\classes-4e902ebd40e2edfd0574b66d1316bd0788b3f285.jar" />
+    </item>
+    <item
+        jar="C:\Users\TOSHIBA\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-ce4ed1b0023bfbb51dc4d895af25e93950149cbb.jar" />
+    </item>
+    <item
+        jar="C:\ANDROID\dev\app\libs\jsoup-1.7.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="872693211fd68d1c4e116cf90021603207725e19">
+        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\jsoup-1.7.2-bfa4d41a9482f2d42bd26051ce84ecce766351c7.jar" />
+    </item>
+    <item
+        jar="C:\ANDROID\dev\app\libs\libGoogleAnalyticsServices.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e887c6c9b31b39a39b0eaba981448b78902ea813">
+        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\libGoogleAnalyticsServices-945e20f1dda021fba2ebb233f02c383720a03143.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\xml\\cuts_user_preference_order.xml",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\xml\\cuts_user_preference_order.xml"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\xml\\cuts_user_preference_language.xml",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\xml\\cuts_user_preference_language.xml"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\xml\\searchable.xml",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\xml\\searchable.xml"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\xml\\cuts_user_preference_range.xml",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\xml\\cuts_user_preference_range.xml"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\xml\\cuts_user_preferences.xml",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\xml\\cuts_user_preferences.xml"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\xml\\cuts_user_preference_refresh.xml",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\xml\\cuts_user_preference_refresh.xml"
+    },
+    {
+        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\xml\\cuts_user_preference_headers.xml",
+        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\xml\\cuts_user_preference_headers.xml"
+    }
+]

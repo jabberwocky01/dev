@@ -1,0 +1,5 @@
+C:\ANDROID\dev\app\build\intermediates\classes\debug
+C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\jsoup-1.7.2-bfa4d41a9482f2d42bd26051ce84ecce766351c7.jar
+C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\classes-4e902ebd40e2edfd0574b66d1316bd0788b3f285.jar
+C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-ce4ed1b0023bfbb51dc4d895af25e93950149cbb.jar
+C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\libGoogleAnalyticsServices-945e20f1dda021fba2ebb233f02c383720a03143.jar

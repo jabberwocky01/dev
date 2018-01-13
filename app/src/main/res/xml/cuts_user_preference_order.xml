@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:title="@string/cuts_order_header" >
+        <ListPreference
+            android:defaultValue="end"
+            android:dialogTitle="@string/cuts_order_criteria_option"
+            android:entries="@array/cuts_order_criteria_options"
+            android:entryValues="@array/cuts_order_criteria_values"
+            android:key="pref_cuts_order_criteria_option"
+            android:summary="@string/cuts_order_criteria_option_sum"
+            android:title="@string/cuts_order_criteria_option" />
+        <ListPreference
+            android:defaultValue="desc"
+            android:dialogTitle="@string/cuts_order_option"
+            android:entries="@array/cuts_order_options"
+            android:entryValues="@array/cuts_order_values"
+            android:key="pref_cuts_order_option"
+            android:summary="@string/cuts_order_option_sum"
+            android:title="@string/cuts_order_option" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
