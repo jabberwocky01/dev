@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="libGoogleAnalyticsServices">
+  <library name="__local_aars__:/home/nil/StudioProjects/dev/app/libs/libGoogleAnalyticsServices.jar:unspecified@jar">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/app/libs/libGoogleAnalyticsServices.jar!/" />
     </CLASSES>
