@@ -1,78 +1,78 @@
 [
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/water.jpg",
+        "source": "/home/nil/StudioProjects/dev/app/src/main/res/drawable/water.jpg"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_item_background_holo_dark.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_ic_clear_holo_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_ic_clear_holo_light.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_searchview_right_holo_dark.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_textfield_searchview_right_holo_dark.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/electricity.jpg",
+        "source": "/home/nil/StudioProjects/dev/app/src/main/res/drawable/electricity.jpg"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_search_dropdown_dark.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_search_dropdown_dark.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_ic_clear.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_item_background_holo_dark.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_ab_holo_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_spinner_ab_holo_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_item_background_holo_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_ab_holo.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_tab_indicator_ab_holo.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_list_selector_holo_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_spinner_ab_holo_dark.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_spinner_ab_holo_dark.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_search_dropdown_dark.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_search_dropdown_dark.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_spinner_ab_holo_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_spinner_ab_holo_light.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_ab_holo.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_tab_indicator_ab_holo.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_ic_clear.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_ic_clear.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_searchview_right_holo_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_textfield_searchview_right_holo_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_search_dropdown_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_search_dropdown_light.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_searchview_holo_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_textfield_searchview_holo_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_textfield_searchview_right_holo_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_textfield_searchview_right_holo_light.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_search_dropdown_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_search_dropdown_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_textfield_searchview_right_holo_dark.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_textfield_searchview_right_holo_dark.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\water.jpg",
-        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\drawable\\water.jpg"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_item_background_holo_light.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_holo_light.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_ic_clear_holo_light.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_textfield_searchview_holo_dark.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_textfield_searchview_holo_dark.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\electricity.jpg",
-        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\drawable\\electricity.jpg"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_ab_holo_dark.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_spinner_ab_holo_dark.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_textfield_searchview_holo_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_textfield_searchview_holo_light.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_searchview_holo_dark.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\drawable\\abc_textfield_searchview_holo_dark.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/drawable/abc_list_selector_background_transition_holo_light.xml"
     }
 ]

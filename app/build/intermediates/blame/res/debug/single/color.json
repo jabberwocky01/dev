@@ -1,14 +1,14 @@
 [
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_search_url_text_holo.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\color\\abc_search_url_text_holo.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/color/list_row_colors.xml",
+        "source": "/home/nil/StudioProjects/dev/app/src/main/res/color/list_row_colors.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\color\\button_colors.xml",
-        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\color\\button_colors.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/color/button_colors.xml",
+        "source": "/home/nil/StudioProjects/dev/app/src/main/res/color/button_colors.xml"
     },
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\color\\list_row_colors.xml",
-        "source": "C:\\ANDROID\\dev\\app\\src\\main\\res\\color\\list_row_colors.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/color/abc_search_url_text_holo.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/color/abc_search_url_text_holo.xml"
     }
 ]

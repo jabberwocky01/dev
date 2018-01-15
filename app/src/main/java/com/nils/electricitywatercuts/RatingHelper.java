@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * @author TOSHIBA
+ * @author NilS
  * 
  * In the sample below, after a week of use and opening the app up at least 10 times, the dialog appears to get their review/rating.
  * Clicking "No thanks/Already have" will dismiss the box and never show it again

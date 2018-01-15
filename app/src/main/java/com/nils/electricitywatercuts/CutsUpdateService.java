@@ -8,10 +8,13 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,9 +43,12 @@ import android.support.v4.app.NotificationCompat;
 import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.StandardExceptionParser;
+import com.nils.electricitywatercuts.com.nils.electricitywatercuts.model.EuropeElectricityData;
 
 /**
  * @author NilS
@@ -252,14 +258,54 @@ public class CutsUpdateService extends IntentService {
 
 		// get html document structure
 		try {
-			Document document = Jsoup.parse(new URL(link).openStream(), "UTF-8", link);
+            Calendar cal=Calendar.getInstance();
+            Date date = cal.getTime();
+			DateFormat paramDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
-			// selector query
-			Elements cutDateList = document
-					.select("div.ic-sayfa-content > table > tbody > tr > td:contains(Tarihleri arasında)");
-			
+            List<String> types = Arrays.asList(CutsConstants.BEDAS_CUT_TYPE_PLANNED, CutsConstants.BEDAS_CUT_TYPE_INSTANTANEOUS);
+
+            // look up for 5 days
+            for (int i=0; i<5; i++) {
+                for (String type : types) {
+                    String formattedUrl = String.format(link, "0", type, paramDateFormat.format(date));
+
+                    Document document = Jsoup.parse(new URL(formattedUrl).openStream(), "UTF-8", formattedUrl);
+
+                    // selector query
+                    String text = document.text();
+                    ObjectMapper mapper = new ObjectMapper();
+                    Map<String, Object> map = new HashMap<String, Object>();
+
+                    List<EuropeElectricityData> cutList =
+                            mapper.readValue(text, mapper.getTypeFactory().constructCollectionType(List.class, EuropeElectricityData.class));
+
+                    if (cutList != null) {
+                        for (EuropeElectricityData europeElectricityData : cutList) {
+                            String startDate = dateFormat.format(date) + " " + europeElectricityData.getStartHour();
+                            String endDate = dateFormat.format(date) + " " + europeElectricityData.getEndHour();
+
+                            Cuts cut = new Cuts();
+                            cut.setType("e");
+                            cut.setIconResourceId(R.drawable.electricity);
+                            cut.setReason(europeElectricityData.getReason());
+                            cut.setStartDate(startDate);
+                            cut.setEndDate(endDate);
+                            cut.setLocation(europeElectricityData.getLocation());
+                            cut.setDetail(startDate + "-" + endDate +
+                                    " " + cut.getLocation() +
+                                    " " + cut.getReason());
+
+                            // Process a newly found cut
+                            electricalCuts.add(cut);
+                        }
+                    }
+                }
+                cal.add(Calendar.DATE, 1);
+                date = cal.getTime();
+            }
 			// check if any electricity cut exits
-			if (cutDateList.size()>0) {
+		/*	if (cutDateList.size()>0) {
 				Elements cutHourList = document
 						.select("div.ic-sayfa-content > table > tbody > tr > td:contains(Kesinti Saatleri)");
 				Elements cutReasonList = document
@@ -308,12 +354,12 @@ public class CutsUpdateService extends IntentService {
 					electricalCuts.add(cut);
 				}
 			}
-			
+			*/
 		} catch (IOException e) {
 			//e.printStackTrace();
 			sendToGoogleAnalytics(e);
 		}
-		
+
 		return electricalCuts;
 	}
 	

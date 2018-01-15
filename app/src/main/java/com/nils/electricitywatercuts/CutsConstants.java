@@ -20,8 +20,11 @@ public final class CutsConstants {
 	private static final String europe_electricity_cuts = "bedas";
     private static final String anatolia_electricty_cuts = "ayedas";
     private static final String[] CUTS_LINK_LIST = {"http://www.iski.gov.tr/web/arizaKesinti.aspx", 
-    	"https://www.bedas.com.tr/sayfa.asp?mdl=kesinti&sehir=0", "https://www.bedas.com.tr/sayfa.asp?mdl=kesinti&sehir=1",
+    	"https://www.bedas.com.tr/kesinti.asp?ilce=%s&tip=%s&tarih=%s",
     	"http://www.ayedas.com.tr/tr-TR/ElektrikDagitimi/Pages/BakimArizaBilgi.aspx"};
+
+    public static final String BEDAS_CUT_TYPE_PLANNED = "0";
+	public static final String BEDAS_CUT_TYPE_INSTANTANEOUS = "1";
 
 	private static final String PREF_RANGE = "pref_cuts_range_option";
 	private static final String PREF_FREQ = "pref_cuts_freq_option";
@@ -100,7 +103,7 @@ public final class CutsConstants {
     
     private final static String INSTALL_SHORTCUT = "pref_install_shortcut";
 
-	public static String getWaterCuts() {
+	public static String getWateNilSrCuts() {
 		return water_cuts;
 	}
 

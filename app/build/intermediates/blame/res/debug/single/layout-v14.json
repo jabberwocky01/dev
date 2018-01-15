@@ -1,6 +1,6 @@
 [
     {
-        "merged": "C:\\ANDROID\\dev\\app\\build\\intermediates\\res\\merged\\debug\\layout-v14\\abc_activity_chooser_view.xml",
-        "source": "C:\\ANDROID\\dev\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\19.1.0\\res\\layout-v14\\abc_activity_chooser_view.xml"
+        "merged": "/home/nil/StudioProjects/dev/app/build/intermediates/res/merged/debug/layout-v14/abc_activity_chooser_view.xml",
+        "source": "/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/res/layout-v14/abc_activity_chooser_view.xml"
     }
 ]
