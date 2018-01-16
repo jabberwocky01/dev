@@ -21,7 +21,7 @@ public final class CutsConstants {
     private static final String anatolia_electricty_cuts = "ayedas";
     private static final String[] CUTS_LINK_LIST = {"http://www.iski.gov.tr/web/arizaKesinti.aspx", 
     	"https://www.bedas.com.tr/kesinti.asp?ilce=%s&tip=%s&tarih=%s",
-    	"http://www.ayedas.com.tr/tr-TR/ElektrikDagitimi/Pages/BakimArizaBilgi.aspx"};
+    	"https://www.ayedas.com.tr/Pages/Bilgilendirme/PlanliBakim/Planli-Kesinti-Listesi-ve-Haritasi.aspx"};
 
     public static final String BEDAS_CUT_TYPE_PLANNED = "0";
 	public static final String BEDAS_CUT_TYPE_INSTANTANEOUS = "1";

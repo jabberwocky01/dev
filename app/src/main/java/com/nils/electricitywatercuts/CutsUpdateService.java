@@ -285,14 +285,33 @@ public class CutsUpdateService extends IntentService {
                             String startDate = dateFormat.format(date) + " " + europeElectricityData.getStartHour();
                             String endDate = dateFormat.format(date) + " " + europeElectricityData.getEndHour();
 
+                            String location = europeElectricityData.getLocation();
+							Pattern regex = Pattern.compile("\\((.*?)İlçesi\\)");
+							Matcher regexMatcher = regex.matcher(location);
+
+							String operatorName = "";
+							if (regexMatcher.find()) {
+								operatorName = regexMatcher.group(1);
+							} else {
+								int index = location.indexOf("İlçesi");
+								if (index != -1) {
+									operatorName = location.substring(0, index);
+									index = location.indexOf(" ");
+									if (index != -1) {
+										operatorName = operatorName.substring(index+1);
+									}
+								}
+							}
+
                             Cuts cut = new Cuts();
                             cut.setType("e");
                             cut.setIconResourceId(R.drawable.electricity);
+							cut.setOperatorName(operatorName.trim());
                             cut.setReason(europeElectricityData.getReason());
                             cut.setStartDate(startDate);
                             cut.setEndDate(endDate);
                             cut.setLocation(europeElectricityData.getLocation());
-                            cut.setDetail(startDate + "-" + endDate +
+                            cut.setDetail(operatorName + ' ' + startDate + "-" + endDate +
                                     " " + cut.getLocation() +
                                     " " + cut.getReason());
 
@@ -372,109 +391,45 @@ public class CutsUpdateService extends IntentService {
 			Document document = Jsoup.connect(link).timeout(10000).get();
 
 			// selector query
-			Elements cutDateList = document.select("div.grid1 span[id^=ctl00_SPWebPartManager1]");
+			Elements cutDateList = document.select("table.table-responsive tr");
 			
 			// check if any electricity cut exits
 			if (cutDateList.size()>0) {
-				Elements cutInfo = document.select("div[class^=ExternalClass]");
 				// check results
 				int startIndex, endIndex, dateCount;
-				String cutListStr, startDate, endDate, hourStr, startHour, endHour, operatorName, reason="", location;
+				String cutListStr, startDate, endDate, hourStr, startHour, endHour, operatorName, reason="Planlı Kesinti", location;
 				for (int i = 0; i < cutDateList.size(); i++) {
 					try {
-						// get value
-						String dateStr = cutDateList.get(i).text();
-						startIndex = dateStr.indexOf(" ");
-						startDate = dateStr.substring(0, startIndex);
+						operatorName = cutDateList.get(i).attr("data-ilce");
+						startDate = cutDateList.get(i).attr("data-tarih");
+						startDate = CutsConstants.formatDate(startDate, "d.M.yyyy", "DD.MM.YYYY");
 						endDate = startDate;
 						
-						Elements cutLocationList = cutInfo.get(i).children();
-						for (int j = 0; j<cutLocationList.size(); j++) {
-							cutListStr = cutLocationList.get(j).text();
-							cutListStr = cutListStr.replaceAll("\\s+", " ");
+						Elements cutLocationList = cutDateList.get(i).children();
+						cutListStr = cutLocationList.get(0).text();
+						cutListStr = cutListStr.replaceAll("\\s+", " ");
 
-							endIndex = cutListStr.toLowerCase(new Locale("tr-TR")).indexOf("ilçe");
-                            if (endIndex == -1)
-                                continue;
-                            startIndex = cutListStr.substring(0, endIndex-1).lastIndexOf(" ");
+						endIndex = cutListStr.toLowerCase(new Locale("tr-TR")).indexOf("saat");
+						hourStr = cutListStr.substring(0, endIndex).trim();
+						String[] hourArr = hourStr.split(" - ");
+						startHour = hourArr[0];
+						endHour = hourArr[1];
 
-							operatorName = cutListStr.substring(startIndex, endIndex).trim();
-							cutListStr = cutListStr.substring(endIndex);
-							startIndex = cutListStr.indexOf(" ");
-							cutListStr = cutListStr.substring(startIndex);
+						location = cutLocationList.get(1).text();
 
-					        Pattern p = Pattern.compile("(([01]?[0-9]|2[0-3]):[0-5][0-9])\\s*-\\s*(([01]?[0-9]|2[0-3]):[0-5][0-9])");
-					        Matcher matcher = p.matcher(cutListStr);
-					        dateCount = 0;
-					        while (matcher.find()) {
-					        	dateCount++;
-					        }
-					        
-					        for (int k=0; k<dateCount; k++) {
-					        	endIndex = cutListStr.toLowerCase(new Locale("tr-TR")).indexOf("saatleri arasında");
-								if (endIndex == -1)
-									endIndex = cutListStr.indexOf(" ");
-								hourStr = cutListStr.substring(0, endIndex).trim();
-								while (hourStr.length()>0 && !Character.isDigit(hourStr.charAt(0))) {
-									hourStr = hourStr.substring(1);
-								}
+						Cuts cut = new Cuts();
+						cut.setType("e");
+						cut.setIconResourceId(R.drawable.electricity);
+						cut.setOperatorName(operatorName);
+						cut.setReason(reason);
+						cut.setStartDate(startDate + " " + startHour);
+						cut.setEndDate(endDate + " " + endHour);
+						cut.setLocation(location);
+						cut.setDetail(operatorName + ' ' + startDate + "-" + endDate + " " + location + " " + reason);
 
-                                if (hourStr.length() == 0) {
-                                    cutListStr = cutListStr.substring(endIndex + 17);
-                                    continue;
-                                }
+						// Process a newly found cut
+						electricalCuts.add(cut);
 
-								startIndex = hourStr.indexOf("-");
-								startHour = hourStr.substring(0,startIndex).trim();
-								endHour = hourStr.substring(startIndex+1).trim();
-								cutListStr = cutListStr.substring(endIndex + 17);
-								
-								startIndex = cutListStr.toLowerCase(new Locale("tr-TR")).indexOf("nedeniyle");
-                                endIndex = cutListStr.toLowerCase(new Locale("tr-TR")).indexOf("dolayı");
-								if (startIndex != -1 && endIndex != -1) {
-									if (startIndex < endIndex) {
-										reason = cutListStr.substring(0, startIndex).trim();
-										cutListStr = cutListStr.substring(startIndex+10);
-									} else {		
-										reason = cutListStr.substring(0, endIndex+6).trim();
-										cutListStr = cutListStr.substring(endIndex+7);
-									}
-						        } else {
-									if (startIndex != -1) {
-										reason = cutListStr.substring(0, startIndex).trim();
-										cutListStr = cutListStr.substring(startIndex+10);
-									} else if (endIndex != -1) {		
-										reason = cutListStr.substring(0, endIndex+6).trim();
-										cutListStr = cutListStr.substring(endIndex+7);
-									}
-						        }
-		
-								endIndex = cutListStr.toLowerCase(new Locale("tr-TR")).indexOf("enerji verilemeyecektir");
-						        matcher = p.matcher(cutListStr);
-						        if (matcher.find() && (endIndex == -1 || matcher.start() < endIndex)) {
-						        	endIndex = matcher.start();
-						        }
-						        if (endIndex != -1) {
-									location = cutListStr.substring(0, endIndex).trim();
-									cutListStr = cutListStr.substring(endIndex);
-								} else {
-									location = cutListStr;
-								}
-								
-								Cuts cut = new Cuts();
-								cut.setType("e");
-								cut.setIconResourceId(R.drawable.electricity);
-								cut.setOperatorName(operatorName);
-								cut.setReason(reason);
-								cut.setStartDate(startDate + " " + startHour);
-								cut.setEndDate(endDate + " " + endHour);
-								cut.setLocation(location);
-								cut.setDetail(operatorName + ' ' + startDate + "-" + endDate + " " + location + " " + reason);
-				
-								// Process a newly found cut
-								electricalCuts.add(cut);
-					        }
-						}
 			        } catch (Exception e) {
 			        	sendToGoogleAnalytics(e);
 			        }
