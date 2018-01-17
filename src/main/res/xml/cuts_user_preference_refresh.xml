@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/cuts_refresh_header" >
+         <ListPreference
+             android:defaultValue="1"
+             android:dialogTitle="@string/cuts_refresh_freq"
+             android:entries="@array/cuts_freq_options"
+             android:entryValues="@array/cuts_freq_values"
+             android:key="pref_cuts_freq_option"
+             android:summary="@string/cuts_refresh_freq_sum"
+             android:title="@string/cuts_refresh_freq" />
+         <EditTextPreference
+             android:key="pref_cuts_search_str"
+             android:title="@string/cuts_search_str"
+             android:summary="@string/cuts_search_str_sum"/>
+    </PreferenceCategory>
+  
+</PreferenceScreen>

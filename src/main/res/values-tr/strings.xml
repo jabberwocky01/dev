@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kesinti Var!</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_search">Kesinti ara</string>
+    <string name="menu_update">Kesinti Güncelle</string>
+    <string name="cut_details">Kesinti Detayları</string>
+	<string name="operator_title">İşletme Adı:</string>
+	<string name="start_end_date_title">Baş-Bitiş Tarihi:</string>
+	<string name="location_title">Etkilenen Yerler:</string>
+	<string name="reason_title">Kesinti Nedeni:</string>
+	<string name="image_content_desc">Kesinti</string>
+	<string name="cuts_range_header">LİSTELEME</string>
+    <string name="cuts_range">Kesinti listelenme seçimi</string>
+    <string name="cuts_range_sum">Sadece güncel veya önceden yüklenmiş kesintileri de görmek için seçim yapınız.</string>
+	<string name="cuts_refresh_header">GÜNCELLEME</string>
+    <string name="cuts_refresh_freq">Kesinti güncelleme sıklığı</string>
+    <string name="cuts_refresh_freq_sum">Kesintilerin olarak güncelleneceği aralığı seçmek için tıklayınız.</string>
+    <string name="cuts_order_header">SIRALAMA</string>
+    <string name="cuts_order_criteria_option">Kesintilerin listelenme kriteri</string>
+    <string name="cuts_order_criteria_option_sum">Kesintilerin listelenme kriterini değiştirmek için seçim yapınız.</string>
+    <string name="cuts_order_option">Kesintilerin listelenme sırası</string>
+    <string name="cuts_order_option_sum">Kesintilerin listelenme sırasını değiştirmek için seçim yapınız.</string>
+    <string name="cuts_search_str">Aranacak kelimeler</string>
+    <string name="cuts_search_str_sum">Kesintilerde aranacak kelimeleri (Türkçe karakter kullanarak ve birden fazla ise virgülle ayırarak) giriniz.</string>
+    <string name="cuts_lang_header">DİL</string>
+    <string name="cuts_lang">Uygulama dili seçimi</string>
+    <string name="cuts_lang_sum">Seçim yapınız.</string>
+    <string name="water_label">Su</string>
+    <string name="electricity_label">Elektrik</string>
+    <string name="share">Paylaş</string>
+    <string name="choose_app_to_share_msg">Paylaşım için uygulama seçiniz:</string>
+    <string name="no_share_apps_err_msg">Paylaşım için yüklü bir uygulama bulunamadı!</string>
+    <string name="water_cut_label">Su Kesintisi</string>
+    <string name="electricity_cut_label">Elektrik Kesintisi</string>
+    <string name="for_more_cuts_label">Daha fazlası:</string>
+    <string name="cuts_ticker">Yeni Kesinti Bildirimi</string>
+	<string name="cuts_notify_text">Yeni arıza-kesinti duyuruları var.</string>
+	<string name="cuts_notify_header">Yeni %1$s Kesintisi:</string>
+	<string name="cuts_app_rate_sum">%1$s Uygulamasını Puanla</string>
+	<string name="cuts_app_rate">Eğer %1$s uygulamasından memnun kaldıysanız, lütfen oy verin/yorum yapınız. Desteğiniz için teşekkürler!</string>
+	<string name="cuts_app_rate_btn">Puanla</string>
+	<string name="cuts_app_remind_btn">Daha sonra hatırlat</string>
+    <string name="cuts_app_already_btn">Önceden puanlandı</string>
+    <string name="no_cuts_text">Yükleme işlemi devam etmektedir veya görüntülenecek yeni bir kesinti bulunmamaktadır.</string>
+    
+    <!-- Label for the "Done" button on the far left of action mode toolbars. -->
+    <string name="abc_action_mode_done">Tamam</string>
+    <!-- Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] -->
+    <string name="abc_action_bar_home_description">Ana ekrana dön</string>
+    <!-- Content description for the action bar "up" affordance. [CHAR LIMIT=NONE] -->
+    <string name="abc_action_bar_up_description">Yukarı</string>
+    <!-- Content description for the action menu overflow button. [CHAR LIMIT=NONE] -->
+    <string name="abc_action_menu_overflow_description">Daha fazla seçenek</string>
+
+    <!-- SearchView accessibility description for search button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_search">Ara</string>
+    <!-- SearchView accessibility description for search text field [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_query">Sorguyu ara</string>
+    <!-- SearchView accessibility description for clear button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_clear">Sorguyu temizle</string>
+    <!-- SearchView accessibility description for submit button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_submit">Sorgula</string>
+    <!-- SearchView accessibility description for voice button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_voice">Sesli arama</string>
+
+    <!-- ActivityChooserView - accessibility support -->
+    <!-- Description of the shwoing of a popup window with activities to choose from. [CHAR LIMIT=NONE] -->
+    <string name="abc_activitychooserview_choose_application">Uygulama seçiniz</string>
+    <!-- Title for a button to expand the list of activities in ActivityChooserView [CHAR LIMIT=25] -->
+    <string name="abc_activity_chooser_view_see_all">Tümünü gör</string>
+    <!-- Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] -->
+    <string name="abc_shareactionprovider_share_with_application">%s ile paylaş</string>
+    <!-- Description of the choose target button in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] -->
+    <string name="abc_shareactionprovider_share_with">Paylaş</string>
+</resources>

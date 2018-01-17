@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nils.electricitywatercuts"
+    android:versionCode="3"
+    android:versionName="1.2" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light" >
+        <activity
+            android:name="com.nils.electricitywatercuts.MainActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenLayout|uiMode|layoutDirection|screenSize"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Listing 8-24: Registering a search results Activity -->
+		<activity android:name=".SearchCutsActivity" 
+		          android:label="@string/action_search"
+		          android:launchMode="singleTop">
+		  <intent-filter>
+		    <action android:name="android.intent.action.SEARCH" />
+		    <category android:name="android.intent.category.DEFAULT" />
+		  </intent-filter>
+		  <meta-data
+		    android:name="android.app.searchable"
+		    android:resource="@xml/searchable" />
+		</activity>
+		
+		<!-- Listing 8-26: Setting a default search result Activity for an application -->
+   		<meta-data android:name="android.app.default_searchable"
+     	 		   android:value=".SearchCutsActivity"/>
+     	   
+        <activity android:name=".CutPreferencesActivity"></activity>
+        
+        <provider android:name=".CutsProvider" 
+                  android:authorities="com.nils.electricitywatercuts"
+                  android:exported="false"/>
+          
+	    <service android:enabled="true" android:name=".CutsUpdateService"/>
+<!-- 	    <service android:enabled="true" android:name=".OrganizeCutsDatabaseService"/> -->
+	    <receiver android:name=".CutsAlarmReceiver" android:exported="false">
+		  <intent-filter>
+		    <action android:name="com.nils.electricitywatercuts.ACTION_REFRESH_CUTS_ALARM" />
+		  </intent-filter>
+<!-- 		  <intent-filter> -->
+<!-- 		    <action android:name="com.nils.electricitywatercuts.ACTION_ORGANIZE_CUTS_DB_ALARM" /> -->
+<!-- 		  </intent-filter> -->
+		  <intent-filter>
+			<action android:name="android.intent.action.BOOT_COMPLETED" />
+		  </intent-filter>
+		</receiver>
+	    
+    </application>
+
+</manifest>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+    <header android:fragment="com.nils.electricitywatercuts.CutPreferencesSecondFragment"
+            android:title="@string/cuts_range"
+            android:summary="@string/cuts_range_sum">
+            <extra android:name="cuts_preference" android:value="PREF_RANGE"/>
+    </header>
+    <header android:fragment="com.nils.electricitywatercuts.CutPreferencesSecondFragment"
+            android:title="@string/cuts_refresh_freq"
+            android:summary="@string/cuts_refresh_freq_sum">
+            <extra android:name="cuts_preference" android:value="PREF_FREQ"/>
+    </header>    
+    <header android:fragment="com.nils.electricitywatercuts.CutPreferencesSecondFragment"
+            android:title="@string/cuts_order_criteria_option"
+            android:summary="@string/cuts_order_criteria_option_sum">
+            <extra android:name="cuts_preference" android:value="PREF_ORDER"/>
+    </header> 
+    <header android:fragment="com.nils.electricitywatercuts.CutPreferencesSecondFragment"
+            android:title="@string/cuts_lang"
+            android:summary="@string/cuts_lang_sum">
+            <extra android:name="cuts_preference" android:value="PREF_LANG"/>
+    </header>
+</preference-headers>

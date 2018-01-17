@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/cuts_range_header" >
+         <ListPreference
+             android:defaultValue="0"
+             android:dialogTitle="@string/cuts_range"
+             android:entries="@array/cuts_range_options"
+             android:entryValues="@array/cuts_range_values"
+             android:key="pref_cuts_range_option"
+             android:summary="@string/cuts_range_sum"
+             android:title="@string/cuts_range" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/cuts_refresh_header" >
+        <PreferenceScreen
+            android:key="pref_cuts_refresh">
+            <ListPreference
+                android:defaultValue="1"
+                android:dialogTitle="@string/cuts_refresh_freq"
+                android:entries="@array/cuts_freq_options"
+                android:entryValues="@array/cuts_freq_values"
+                android:key="pref_cuts_freq_option"
+                android:summary="@string/cuts_refresh_freq_sum"
+                android:title="@string/cuts_refresh_freq" />
+            <EditTextPreference
+	             android:key="pref_cuts_search_str"
+	             android:title="@string/cuts_search_str"
+	             android:summary="@string/cuts_search_str_sum"/>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/cuts_order_header" >
+        <ListPreference
+            android:defaultValue="end"
+            android:dialogTitle="@string/cuts_order_criteria_option"
+            android:entries="@array/cuts_order_criteria_options"
+            android:entryValues="@array/cuts_order_criteria_values"
+            android:key="pref_cuts_order_criteria_option"
+            android:summary="@string/cuts_order_criteria_option_sum"
+            android:title="@string/cuts_order_criteria_option" />
+        <ListPreference
+            android:defaultValue="desc"
+            android:dialogTitle="@string/cuts_order_option"
+            android:entries="@array/cuts_order_options"
+            android:entryValues="@array/cuts_order_values"
+            android:key="pref_cuts_order_option"
+            android:summary="@string/cuts_order_option_sum"
+            android:title="@string/cuts_order_option" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/cuts_lang_header" >
+         <ListPreference
+             android:defaultValue="tr"
+             android:dialogTitle="@string/cuts_lang"
+             android:entries="@array/cuts_lang_options"
+             android:entryValues="@array/cuts_lang_values"
+             android:key="pref_cuts_lang_option"
+             android:summary="@string/cuts_lang_sum"
+             android:title="@string/cuts_lang" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

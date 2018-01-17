@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/cuts_range_header" >
+         <ListPreference
+             android:defaultValue="0"
+             android:dialogTitle="@string/cuts_range"
+             android:entries="@array/cuts_range_options"
+             android:entryValues="@array/cuts_range_values"
+             android:key="pref_cuts_range_option"
+             android:summary="@string/cuts_range_sum"
+             android:title="@string/cuts_range" />
+    </PreferenceCategory>
+  
+</PreferenceScreen>
