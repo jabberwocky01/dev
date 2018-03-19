@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
+import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
@@ -323,57 +324,7 @@ public class CutsUpdateService extends IntentService {
                 cal.add(Calendar.DATE, 1);
                 date = cal.getTime();
             }
-			// check if any electricity cut exits
-		/*	if (cutDateList.size()>0) {
-				Elements cutHourList = document
-						.select("div.ic-sayfa-content > table > tbody > tr > td:contains(Kesinti Saatleri)");
-				Elements cutReasonList = document
-						.select("div.ic-sayfa-content > table > tbody > tr > td:contains(Kesinti Nedeni)");
-				Elements cutDistrictList = document
-						.select("div.ic-sayfa-content > table > tbody > tr > td:contains(bölge ve mahalleler)");
-				// check results
-				int index;
-				String startDate, endDate, hourStr, startHour, endHour, operatorName, reason, location;
-				for (int i = 1; i < cutDateList.size(); i++) {
-					// get value	
-					String dateStr = (cutDateList.get(i).getElementsByTag("b")).get(0).text();
-					index = dateStr.indexOf("-");
-					startDate = dateStr.substring(0,index);
-					endDate = dateStr.substring(index+1);
-					
-					hourStr = cutHourList.get(i).text();
-					index = hourStr.indexOf(":");
-					hourStr = hourStr.substring(index+2);
-					index = hourStr.indexOf("-");
-					startHour = hourStr.substring(0,index).trim();
-					endHour = hourStr.substring(index+1).trim();
-					
-					startDate = startDate + " " + startHour;
-					endDate = endDate + " " + endHour;
-					
-					operatorName = (cutDateList.get(i).getElementsByTag("b")).get(1).text().substring(1);
-					reason = cutReasonList.get(i).text();
-					index = reason.indexOf(":");
-					reason = reason.substring(index+2);
-					location = cutDistrictList.get(i).text();
-					index = location.indexOf(":");
-					location = location.substring(index+1).trim();
-					
-					Cuts cut = new Cuts();
-					cut.setType("e");
-					cut.setIconResourceId(R.drawable.electricity);
-					cut.setOperatorName(operatorName);
-					cut.setReason(reason);
-					cut.setStartDate(startDate);
-					cut.setEndDate(endDate);
-					cut.setLocation(location);
-					cut.setDetail(operatorName + ' ' + startDate + "-" + endDate + " " + location + " " + reason);
-	
-					// Process a newly found cut
-					electricalCuts.add(cut);
-				}
-			}
-			*/
+
 		} catch (IOException e) {
 			//e.printStackTrace();
 			sendToGoogleAnalytics(e);
@@ -402,7 +353,10 @@ public class CutsUpdateService extends IntentService {
 					try {
 						operatorName = cutDateList.get(i).attr("data-ilce");
 						startDate = cutDateList.get(i).attr("data-tarih");
-						startDate = CutsConstants.formatDate(startDate, "d.M.yyyy", "DD.MM.YYYY");
+						List<String> dateParsed = new ArrayList<String>(Arrays.asList(startDate.split("\\.")));
+						startDate = ("00" + dateParsed.get(0)).substring(dateParsed.get(0).length()) +
+								("00" + dateParsed.get(1)).substring(dateParsed.get(1).length()) + dateParsed.get(2);
+						startDate = CutsConstants.formatDate(startDate, "ddMMyyyy", "dd.MM.yyyy");
 						endDate = startDate;
 						
 						Elements cutLocationList = cutDateList.get(i).children();
@@ -452,58 +406,33 @@ public class CutsUpdateService extends IntentService {
 			Document document = Jsoup.connect(link).timeout(10000).get();
 
 			// selector query
-            Elements cutItemsList = document
-                    .select("span#ctl00_ContentPlaceHolder1_lblContent table td[style=font-weight:normal]");
+			Elements cutItemsList = document.select("table.table-bordered td");
 
-
-			for (int i = 0; i < cutItemsList.size(); i+=5) {
+			for (int i = 2; i < cutItemsList.size(); i+=16) {
 				// get value
-				String operatorName = cutItemsList.get(i+1).text();
-				String reason = cutItemsList.get(i+2).text();
-				String startDate = cutItemsList.get(i).text();
-				// format start date
-				startDate = CutsConstants.formatDate(startDate, 
-						CutsConstants.getYyyymmddHhmmss(), CutsConstants.getDdmmyyyyhhmmss());
-				String endDateText = cutItemsList.get(i+4).text();
-				String endDate = "", day="", month="", year="", time="";
-				for (int j = 0; j < endDateText.length(); j++) {	
-					if (Character.isDigit(endDateText.charAt(j))) {
-						endDate += endDateText.charAt(j);
-						if (endDate.length() == 4 && "".equals(year)) {
-							year = endDate;
-							endDate = "";
-						}
-					}
-					
-					if (endDateText.charAt(j) == '.') {
-						if ("".equals(month)) {
-							endDate = endDate.length()!=2 ? "0"+endDate : endDate;
-							endDate += '.';
-							if ("".equals(day))
-								day = endDate;
-							else
-								month = endDate;
-							endDate = "";
-						} else {
-							time = endDate;
-						}
-					} else if (endDateText.charAt(j) == ':') {
-						endDate = endDate.length()!=2 ? "0"+endDate : endDate;
-						endDate += ':';
-					}
-				}
-				endDate = day + month + year + " " + time + ":00";
-
+				String operatorName = cutItemsList.get(i).text();
 				String location = cutItemsList.get(i+3).text();
-				location = location.replaceAll("<br>+", ", ");
+				String reason = cutItemsList.get(i+6).text();
+				String startDate = cutItemsList.get(i+9).text();
+				String[] dateArr = startDate.split(" - ");
+				startDate = dateArr[0];
+				startDate = CutsConstants.formatDate(startDate, "d.M.yyyy", "dd.MM.yyyy");
+				String startHour = dateArr[1];
+
+				String endDateTime = cutItemsList.get(i+12).text();
+				String endDate = endDateTime.substring(endDateTime.indexOf("olarak ")+7);
+				endDate = endDate.substring(0, endDate.indexOf(" "));
+				endDate = CutsConstants.formatDate(endDate, "d.M.yyyy", "dd.MM.yyyy");
+				String endHour = endDateTime.substring(endDateTime.indexOf("saat ")+5);
+				endHour = endHour.substring(0, endHour.indexOf(" "));
 
 				Cuts cut = new Cuts();
 				cut.setType("w");
 				cut.setIconResourceId(R.drawable.water);
 				cut.setOperatorName(operatorName);
 				cut.setReason(reason);
-				cut.setStartDate(startDate);
-				cut.setEndDate(endDate);
+				cut.setStartDate(startDate + " " + startHour);
+				cut.setEndDate(endDate + " " + endHour);
 				cut.setLocation(location);
 				cut.setDetail(operatorName + ' ' + startDate + "-" + endDate + " " + location + " " + reason);
 

@@ -19,7 +19,7 @@ public final class CutsConstants {
     private static final String water_cuts = "iski";
 	private static final String europe_electricity_cuts = "bedas";
     private static final String anatolia_electricty_cuts = "ayedas";
-    private static final String[] CUTS_LINK_LIST = {"http://www.iski.gov.tr/web/arizaKesinti.aspx", 
+    private static final String[] CUTS_LINK_LIST = {"http://www.iski.gov.tr/web/tr-TR/ariza-kesinti",
     	"https://www.bedas.com.tr/kesinti.asp?ilce=%s&tip=%s&tarih=%s",
     	"https://www.ayedas.com.tr/Pages/Bilgilendirme/PlanliBakim/Planli-Kesinti-Listesi-ve-Haritasi.aspx"};
 

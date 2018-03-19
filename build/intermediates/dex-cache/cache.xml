@@ -2,32 +2,74 @@
 <items version="2" >
 
     <item
-        jar="C:\ANDROID\dev\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        is-multidex="false"
+        jar="/home/nil/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.5/b3035f37e674c04dafe36a660c3815cc59f764e2/jackson-databind-2.8.5.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
-        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\classes-4e902ebd40e2edfd0574b66d1316bd0788b3f285.jar" />
+        min-sdk-version="8"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b3035f37e674c04dafe36a660c3815cc59f764e2">
+        <dex dex="/home/nil/StudioProjects/dev/app/build/intermediates/transforms/preDex/release/4.jar" />
     </item>
     <item
-        jar="C:\Users\TOSHIBA\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        is-multidex="false"
+        jar="/home/nil/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.5/60d059f5d2930ccd1ef03535b713fd9f933d1ba7/jackson-core-2.8.5.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-ce4ed1b0023bfbb51dc4d895af25e93950149cbb.jar" />
+        min-sdk-version="8"
+        optimize="true"
+        revision="26.0.2"
+        sha1="60d059f5d2930ccd1ef03535b713fd9f933d1ba7">
+        <dex dex="/home/nil/StudioProjects/dev/app/build/intermediates/transforms/preDex/release/5.jar" />
     </item>
     <item
-        jar="C:\ANDROID\dev\app\libs\jsoup-1.7.2.jar"
+        is-multidex="false"
+        jar="/home/nil/StudioProjects/dev/app/libs/libGoogleAnalyticsServices.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="872693211fd68d1c4e116cf90021603207725e19">
-        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\jsoup-1.7.2-bfa4d41a9482f2d42bd26051ce84ecce766351c7.jar" />
-    </item>
-    <item
-        jar="C:\ANDROID\dev\app\libs\libGoogleAnalyticsServices.jar"
-        jumboMode="false"
-        revision="21.1.2"
+        min-sdk-version="8"
+        optimize="true"
+        revision="26.0.2"
         sha1="e887c6c9b31b39a39b0eaba981448b78902ea813">
-        <dex dex="C:\ANDROID\dev\app\build\intermediates\pre-dexed\debug\libGoogleAnalyticsServices-945e20f1dda021fba2ebb233f02c383720a03143.jar" />
+        <dex dex="/home/nil/StudioProjects/dev/app/build/intermediates/transforms/preDex/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-19.1.0.aar/2bfe6a4263552d0b3081933636612b4a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="8"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="/home/nil/StudioProjects/dev/app/build/intermediates/transforms/preDex/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nil/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        min-sdk-version="8"
+        optimize="true"
+        revision="26.0.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/home/nil/StudioProjects/dev/app/build/intermediates/transforms/preDex/release/7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nil/StudioProjects/dev/app/libs/jsoup-1.7.2.jar"
+        jumboMode="false"
+        min-sdk-version="8"
+        optimize="true"
+        revision="26.0.2"
+        sha1="872693211fd68d1c4e116cf90021603207725e19">
+        <dex dex="/home/nil/StudioProjects/dev/app/build/intermediates/transforms/preDex/release/1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nil/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.5/9d82ff47bc2c2d3b5b6a6618fe636782bbcd5b07/jackson-annotations-2.8.5.jar"
+        jumboMode="false"
+        min-sdk-version="8"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9d82ff47bc2c2d3b5b6a6618fe636782bbcd5b07">
+        <dex dex="/home/nil/StudioProjects/dev/app/build/intermediates/transforms/preDex/release/6.jar" />
     </item>
 
 </items>
