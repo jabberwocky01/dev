@@ -26,20 +26,20 @@ public class CutPreferencesSecondFragment extends PreferenceFragment {
 
         int preferenceToLoad=-1;
         String settings = getArguments().getString("cuts_preference");
-        if (CutsConstants.getSettingRange().equals(settings)) {
+        if (CutsConstants.SETTING_RANGE.equals(settings)) {
         	preferenceToLoad= R.xml.cuts_user_preference_range; 
-    	} else if (CutsConstants.getSettingFreq().equals(settings)) {
+    	} else if (CutsConstants.SETTING_FREQ.equals(settings)) {
         	preferenceToLoad= R.xml.cuts_user_preference_refresh;       	
-        } else if (CutsConstants.getSettingOrder().equals(settings)) {
+        } else if (CutsConstants.SETTING_ORDER.equals(settings)) {
         	preferenceToLoad=R.xml.cuts_user_preference_order;
-        } else if (CutsConstants.getSettingLang().equals(settings)) {
+        } else if (CutsConstants.SETTING_LANG.equals(settings)) {
         	preferenceToLoad=R.xml.cuts_user_preference_language;
         }
         
         addPreferencesFromResource(preferenceToLoad);
         
-        if (CutsConstants.getSettingFreq().equals(settings)) {
-	    	ListPreference itemList = (ListPreference)findPreference(CutsConstants.getPrefFreq());
+        if (CutsConstants.SETTING_FREQ.equals(settings)) {
+	    	ListPreference itemList = (ListPreference)findPreference(CutsConstants.PREF_FREQ);
 	    	String freqPrefStr = itemList.getValue();
 	    	disableSearchPreference(freqPrefStr);
 	    	itemList.setOnPreferenceChangeListener(new
@@ -54,7 +54,7 @@ public class CutPreferencesSecondFragment extends PreferenceFragment {
     }
     
     private void disableSearchPreference(String searchStr) {
-		EditTextPreference itemList2 = (EditTextPreference)findPreference(CutsConstants.getPrefSearchStrOption());	
+		EditTextPreference itemList2 = (EditTextPreference)findPreference(CutsConstants.PREF_SEARCH_STR_OPTION);
 		if("-1".equals(searchStr))
 			itemList2.setEnabled(false);
 		else

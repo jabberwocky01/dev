@@ -70,6 +70,8 @@ public class CutsUpdateService extends IntentService {
 	private Integer freqPreference;
 	private String searchStringPreference;
 
+	private final CutsHelper cutsHelper = new CutsHelper();
+
 	public CutsUpdateService() {
 		super("CutsUpdateService");
 	}
@@ -84,13 +86,13 @@ public class CutsUpdateService extends IntentService {
 		Bundle bundle = intent.getExtras();
 		
 		if (bundle!=null) {
-			if(bundle.getString(CutsConstants.getIntentCutsFreq())!=null) {
-				String freqPreferenceStr = bundle.getString(CutsConstants.getIntentCutsFreq());
+			if(bundle.getString(CutsConstants.INTENT_CUTS_FREQ)!=null) {
+				String freqPreferenceStr = bundle.getString(CutsConstants.INTENT_CUTS_FREQ);
 				freqPreference = Integer.parseInt(freqPreferenceStr);
 				registerAlarm();
-			} else if (bundle.getBoolean(CutsConstants.getIntentCutsNotificationFlag(), false)) {
+			} else if (bundle.getBoolean(CutsConstants.INTENT_CUTS_NOTIFICATION_FLAG, false)) {
 				notificationFlag = true;
-			} else if (bundle.getBoolean(CutsConstants.getIntentCutsBootFlag(), false)) {
+			} else if (bundle.getBoolean(CutsConstants.INTENT_CUTS_BOOT_FLAG, false)) {
 				organizeCutsDB();
 				notificationFlag = true;
 			}
@@ -105,12 +107,12 @@ public class CutsUpdateService extends IntentService {
 		cal.add(Calendar.MONTH, -1);
 		Date oneMonthBefore = cal.getTime();
 		
-		DateFormat df = new SimpleDateFormat(CutsConstants.getYyyymmddhhmmss(), new Locale("tr-TR"));
+		DateFormat df = new SimpleDateFormat(CutsConstants.yyyyMMddHHmmss, new Locale("tr-TR"));
 		String oneMonthBeforeStr = df.format(oneMonthBefore);
 		
-		String selection = CutsConstants.getKeyOrderEndDate() + "<?";
+		String selection = CutsConstants.KEY_ORDER_END_DATE + "<?";
 		ContentResolver cr = getContentResolver();
-		cr.delete(CutsConstants.getContentUri(), selection, new String[]{oneMonthBeforeStr});
+		cr.delete(CutsConstants.CONTENT_URI, selection, new String[]{oneMonthBeforeStr});
 	}
 	
 	private void registerAlarm() {
@@ -138,36 +140,36 @@ public class CutsUpdateService extends IntentService {
 			Cuts cut = cutsList.get(i);
 			// Construct a where clause to make sure we don't already have this
 			// cut in the provider.
-			String selection = CutsConstants.getKeyDetail() + "=? ";
+			String selection = CutsConstants.KEY_DETAIL + "=? ";
 			String[] selectionArgs = new String[] { cut.getDetail() };
 	
 			// If the cut is new, insert it into the provider.
-			Cursor query = cr.query(CutsConstants.getContentUri(), null, selection, selectionArgs, null);
+			Cursor query = cr.query(CutsConstants.CONTENT_URI, null, selection, selectionArgs, null);
 			boolean addOkFlag = true;
 			if (query.getCount() == 0) {
 				ContentValues values = new ContentValues();
 	
-				values.put(CutsConstants.getKeyOperatorName(), cut.getOperatorName());
-				values.put(CutsConstants.getKeyStartDate(), cut.getStartDate());
-				values.put(CutsConstants.getKeyEndDate(), cut.getEndDate());
-				values.put(CutsConstants.getKeyLocation(), cut.getLocation());
-				values.put(CutsConstants.getKeyReason(), cut.getReason());
-				values.put(CutsConstants.getKeyDetail(), cut.getDetail());
-				values.put(CutsConstants.getKeyType(), cut.getType());
+				values.put(CutsConstants.KEY_OPERATOR_NAME, cut.getOperatorName());
+				values.put(CutsConstants.KEY_START_DATE, cut.getStartDate());
+				values.put(CutsConstants.KEY_END_DATE, cut.getEndDate());
+				values.put(CutsConstants.KEY_LOCATION, cut.getLocation());
+				values.put(CutsConstants.KEY_REASON, cut.getReason());
+				values.put(CutsConstants.KEY_DETAIL, cut.getDetail());
+				values.put(CutsConstants.KEY_TYPE, cut.getType());
 				String cutSearchText = cut.getOperatorName() + ' ' + " " + cut.getLocation() + " " + cut.getReason();
-				values.put(CutsConstants.getKeySearchText(), cutSearchText.toLowerCase(new Locale("tr-TR"))); 
-				String orderStartDate = CutsConstants.formatDate(cut.getStartDate(), 
-						CutsConstants.getDdmmyyyyhhmm(), CutsConstants.getYyyymmddhhmmss());
-			    String orderEndDate = CutsConstants.formatDate(cut.getEndDate(), 
-						CutsConstants.getDdmmyyyyhhmm(), CutsConstants.getYyyymmddhhmmss());
-				values.put(CutsConstants.getKeyOrderStartDate(), orderStartDate);
-				values.put(CutsConstants.getKeyOrderEndDate(), orderEndDate);
-				values.put(CutsConstants.getKeyIsCurrent(), "T");
+				values.put(CutsConstants.KEY_SEARCH_TEXT, cutSearchText.toLowerCase(new Locale("tr-TR")));
+				String orderStartDate = cutsHelper.formatDate(cut.getStartDate(),
+						CutsConstants.ddMMyyyyHHmm, CutsConstants.yyyyMMddHHmmss);
+			    String orderEndDate = cutsHelper.formatDate(cut.getEndDate(),
+						CutsConstants.ddMMyyyyHHmm, CutsConstants.yyyyMMddHHmmss);
+				values.put(CutsConstants.KEY_ORDER_START_DATE, orderStartDate);
+				values.put(CutsConstants.KEY_ORDER_END_DATE, orderEndDate);
+				values.put(CutsConstants.KEY_IS_CURRENT, "T");
 				
 				if (searchStrList.size()>0) {
 					addOkFlag = false;
 					for(int j=0; j<searchStrList.size(); j++) {
-						if(CutsConstants.compareCutsStr(cutSearchText, searchStrList.get(j))) {
+						if(cutsHelper.compareCutsStr(cutSearchText, searchStrList.get(j))) {
 							addOkFlag=true;
 							break;
 						}
@@ -177,7 +179,7 @@ public class CutsUpdateService extends IntentService {
 					cutsForNotification.add(cut);
 				
 			    // Add the new cut to the cuts provider.
-				cr.insert(CutsConstants.getContentUri(), values);
+				cr.insert(CutsConstants.CONTENT_URI, values);
 			} else {
 				while(query.moveToNext()){
 					Long id = query.getLong(query.getColumnIndex("_id"));
@@ -197,8 +199,8 @@ public class CutsUpdateService extends IntentService {
 		
 		ContentResolver cr = getContentResolver();
 		ContentValues values = new ContentValues();
-		values.put(CutsConstants.getKeyIsCurrent(), "T");
-		String where = CutsConstants.getKeyId() + " IN (";
+		values.put(CutsConstants.KEY_IS_CURRENT, "T");
+		String where = CutsConstants.KEY_ID + " IN (";
 
 		for (int i=0; i<idArray.size() ; i++) {
 			if(i == idArray.size()-1) 
@@ -207,22 +209,22 @@ public class CutsUpdateService extends IntentService {
 				where += idArray.get(i) + ", ";
 		}
 		// update as "current"
-		cr.update(CutsConstants.getContentUri(), values, where, null);
+		cr.update(CutsConstants.CONTENT_URI, values, where, null);
 	}
 	
 	private void updateCutsAsPrevious() {
 		// update as "previous"
 		ContentResolver cr = getContentResolver();
 		ContentValues values = new ContentValues();
-		values.put(CutsConstants.getKeyIsCurrent(), "F");
-		String where = CutsConstants.getKeyIsCurrent() + "=? ";
+		values.put(CutsConstants.KEY_IS_CURRENT, "F");
+		String where = CutsConstants.KEY_IS_CURRENT + "=? ";
 		String[] selectionArgs = new String[] { "T" };
-		cr.update(CutsConstants.getContentUri(), values, where, selectionArgs);
+		cr.update(CutsConstants.CONTENT_URI, values, where, selectionArgs);
 	}
 
 	public void refreshCuts(Boolean notificationFlag) {
 
-		String[] urls = CutsConstants.getCutsLinkList();
+		String[] urls = CutsConstants.CUTS_LINK_LIST;
 
 		cutsForNotification.clear();
 		updateCutsAsPrevious();
@@ -271,7 +273,9 @@ public class CutsUpdateService extends IntentService {
                 for (String type : types) {
                     String formattedUrl = String.format(link, "0", type, paramDateFormat.format(date));
 
-                    Document document = Jsoup.parse(new URL(formattedUrl).openStream(), "UTF-8", formattedUrl);
+//                    Document document = Jsoup.parse(new URL(formattedUrl).openStream(), "UTF-8", formattedUrl);
+
+					Document document = Jsoup.connect(formattedUrl).timeout(10000).ignoreContentType(true).validateTLSCertificates(false).get();
 
                     // selector query
                     String text = document.text();
@@ -356,7 +360,7 @@ public class CutsUpdateService extends IntentService {
 						List<String> dateParsed = new ArrayList<String>(Arrays.asList(startDate.split("\\.")));
 						startDate = ("00" + dateParsed.get(0)).substring(dateParsed.get(0).length()) +
 								("00" + dateParsed.get(1)).substring(dateParsed.get(1).length()) + dateParsed.get(2);
-						startDate = CutsConstants.formatDate(startDate, "ddMMyyyy", "dd.MM.yyyy");
+						startDate = cutsHelper.formatDate(startDate, "ddMMyyyy", "dd.MM.yyyy");
 						endDate = startDate;
 						
 						Elements cutLocationList = cutDateList.get(i).children();
@@ -416,13 +420,13 @@ public class CutsUpdateService extends IntentService {
 				String startDate = cutItemsList.get(i+9).text();
 				String[] dateArr = startDate.split(" - ");
 				startDate = dateArr[0];
-				startDate = CutsConstants.formatDate(startDate, "d.M.yyyy", "dd.MM.yyyy");
+				startDate = cutsHelper.formatDate(startDate, "d.M.yyyy", "dd.MM.yyyy");
 				String startHour = dateArr[1];
 
 				String endDateTime = cutItemsList.get(i+12).text();
 				String endDate = endDateTime.substring(endDateTime.indexOf("olarak ")+7);
 				endDate = endDate.substring(0, endDate.indexOf(" "));
-				endDate = CutsConstants.formatDate(endDate, "d.M.yyyy", "dd.MM.yyyy");
+				endDate = cutsHelper.formatDate(endDate, "d.M.yyyy", "dd.MM.yyyy");
 				String endHour = endDateTime.substring(endDateTime.indexOf("saat ")+5);
 				endHour = endHour.substring(0, endHour.indexOf(" "));
 
@@ -482,7 +486,7 @@ public class CutsUpdateService extends IntentService {
 		// for notifications
 		alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-		Intent intentToFire = new Intent(CutsConstants.getIntentCutsNotification());
+		Intent intentToFire = new Intent(CutsConstants.INTENT_CUTS_NOTIFICATION);
 		alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, 0);
 		
 	    cutsNotificationBuilder = new NotificationCompat.Builder(this);
@@ -498,10 +502,10 @@ public class CutsUpdateService extends IntentService {
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
-		String freqPreferenceStr = prefs.getString(CutsConstants.getPrefFreq(), "0");
+		String freqPreferenceStr = prefs.getString(CutsConstants.PREF_FREQ, "0");
 		freqPreference = Integer.parseInt(freqPreferenceStr);
 		searchStringPreference = prefs.getString(
-				CutsConstants.getPrefSearchStrOption(), "");
+				CutsConstants.PREF_SEARCH_STR_OPTION, "");
 		if(!"".equals(searchStringPreference)) {
 			searchStrList.clear();
 			String[] searchStrAll = searchStringPreference.split(",");
@@ -576,7 +580,7 @@ public class CutsUpdateService extends IntentService {
 	
     private void setLocale() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		String lang = prefs.getString(CutsConstants.getPrefLang(), "tr");
+		String lang = prefs.getString(CutsConstants.PREF_LANG, "tr");
     	Locale appLocale = new Locale(lang);
         Locale.setDefault(appLocale);
         Resources res = getResources();

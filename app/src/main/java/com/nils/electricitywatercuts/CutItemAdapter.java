@@ -34,6 +34,7 @@ public class CutItemAdapter extends ArrayAdapter<Cuts> implements Filterable {
     private List<Cuts> filteredCutItems  = new ArrayList<Cuts>(); // Values to be displayed
     private CutsFilter cutFilter;
     private final Object mLock = new Object();
+    private final CutsHelper cutsHelper = new CutsHelper();
  
     public CutItemAdapter(Context context, FragmentManager fm, int textViewResourceId,
             List<Cuts> objects) {
@@ -100,7 +101,7 @@ public class CutItemAdapter extends ArrayAdapter<Cuts> implements Filterable {
     														                		adapterContext.getString(R.string.reason_title))); 
                     
                     // final Uri uri = Uri.parse(CutsConstants.getDefaultTargetUri() + getContext().getPackageName());
-                    final Uri uri = Uri.parse(CutsConstants.getDefaultTargetUri());
+                    final Uri uri = Uri.parse(CutsConstants.DEFAULT_TARGET_URI);
                     
                     b.putString("selectedCutPlainText", selectedCut.getPlainText(adapterContext.getString(R.string.electricity_cut_label),
     														                		adapterContext.getString(R.string.water_cut_label),
@@ -164,7 +165,7 @@ public class CutItemAdapter extends ArrayAdapter<Cuts> implements Filterable {
                     if (item.getType()!=null) {
 	                    String itemName = item.toString();
 	                    // First match against the whole, non-splitted value
-	                    if (CutsConstants.compareCutsStr(itemName, prefixString)) {
+	                    if (cutsHelper.compareCutsStr(itemName, prefixString)) {
 	                    	itemsToShow.add(item);
 	                    }
                     }

@@ -86,9 +86,9 @@ public class MainCutsListFragment extends ListFragment implements
 		ArrayList<String> selectionArgList = new ArrayList<String>();
 		
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		String range = prefs.getString(CutsConstants.getPrefRange(), "0");
+		String range = prefs.getString(CutsConstants.PREF_RANGE, "0");
 		if ("0".equals(range)) {
-			selectionArg = CutsConstants.getKeyIsCurrent() + "=?";
+			selectionArg = CutsConstants.KEY_IS_CURRENT + "=?";
 			selectionArgList.add("T");
 		}
 		
@@ -96,22 +96,22 @@ public class MainCutsListFragment extends ListFragment implements
 	    	String searchCutsStr = args.getString("searchCutsString");
 	    	if (searchCutsStr!=null && !"".equals(searchCutsStr)) {
 	    		searchCutsStr = searchCutsStr.toLowerCase(new Locale("tr-TR"));
-	    		selectionArg += CutsConstants.getKeySearchText() + " LIKE ?";
+	    		selectionArg += CutsConstants.KEY_SEARCH_TEXT + " LIKE ?";
 	    		selectionArgList.add("%" + searchCutsStr + "%");
 	    	}
 	    }
 			
-		String[] projection = new String[] { CutsConstants.getKeyOperatorName(), CutsConstants.getKeyStartDate(),
-				CutsConstants.getKeyEndDate(), CutsConstants.getKeyLocation(), CutsConstants.getKeyReason(),
-				CutsConstants.getKeyDetail(), CutsConstants.getKeyType() };
+		String[] projection = new String[] { CutsConstants.KEY_OPERATOR_NAME, CutsConstants.KEY_START_DATE,
+				CutsConstants.KEY_END_DATE, CutsConstants.KEY_LOCATION, CutsConstants.KEY_REASON,
+				CutsConstants.KEY_DETAIL, CutsConstants.KEY_TYPE };
 		
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-		String orderCriteriaOption = sharedPrefs.getString(CutsConstants.getPrefOrderCriteria(), "end");
-		String orderOption = sharedPrefs.getString(CutsConstants.getPrefOrder(), "desc");
+		String orderCriteriaOption = sharedPrefs.getString(CutsConstants.PREF_ORDER_CRITERIA, "end");
+		String orderOption = sharedPrefs.getString(CutsConstants.PREF_ORDER, "desc");
 		
-		String sortOrderBy = CutsConstants.getKeyOrderEndDate();
+		String sortOrderBy = CutsConstants.KEY_ORDER_END_DATE;
 		if(orderCriteriaOption!=null && "start".equals(orderCriteriaOption)) {
-			sortOrderBy = CutsConstants.getKeyOrderStartDate();
+			sortOrderBy = CutsConstants.KEY_ORDER_START_DATE;
 		} 
 		String sortOrder = " DESC";
 		if(orderOption!=null && "asc".equals(orderOption)) {
@@ -126,7 +126,7 @@ public class MainCutsListFragment extends ListFragment implements
 		}
 
 		CursorLoader loader = new CursorLoader(getActivity(),
-				CutsConstants.getContentUri(), projection, selection, selectionArgs, sortOrderBy + sortOrder);
+				CutsConstants.CONTENT_URI, projection, selection, selectionArgs, sortOrderBy + sortOrder);
 
 		return loader;
 	}
@@ -139,19 +139,19 @@ public class MainCutsListFragment extends ListFragment implements
 		int keyTaskIndex = 0;
 	    while (cursor.moveToNext()) {
 	    	Cuts cut = new Cuts();
-	    	keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.getKeyOperatorName());
+	    	keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.KEY_OPERATOR_NAME);
 	    	cut.setOperatorName(cursor.getString(keyTaskIndex));
-	    	keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.getKeyStartDate());
+	    	keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.KEY_START_DATE);
 			cut.setStartDate(cursor.getString(keyTaskIndex));
-			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.getKeyEndDate());
+			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.KEY_END_DATE);
 			cut.setEndDate(cursor.getString(keyTaskIndex));
-			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.getKeyLocation());
+			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.KEY_LOCATION);
 			cut.setLocation(cursor.getString(keyTaskIndex));
-			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.getKeyReason());
+			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.KEY_REASON);
 			cut.setReason(cursor.getString(keyTaskIndex));
-			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.getKeyDetail());
+			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.KEY_DETAIL);
 			cut.setDetail(cursor.getString(keyTaskIndex));
-			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.getKeyType());
+			keyTaskIndex = cursor.getColumnIndexOrThrow(CutsConstants.KEY_TYPE);
 			cut.setType(cursor.getString(keyTaskIndex));
 			if ("e".equals(cut.getType()))
 				cut.setIconResourceId(R.drawable.electricity);
