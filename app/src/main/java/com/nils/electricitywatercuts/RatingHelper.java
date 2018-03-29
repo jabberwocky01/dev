@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * @author TOSHIBA
+ * @author NilS
  * 
  * In the sample below, after a week of use and opening the app up at least 10 times, the dialog appears to get their review/rating.
  * Clicking "No thanks/Already have" will dismiss the box and never show it again
@@ -32,35 +32,35 @@ import android.widget.TextView;
 public class RatingHelper {
 
 	private static void clearFirstLaunchPrefs(SharedPreferences.Editor editor) {
-		editor.remove(CutsConstants.getCountAppLaunch());
-		editor.remove(CutsConstants.getDateFirstLaunch());
+		editor.remove(CutsConstants.COUNT_APP_LAUNCH);
+		editor.remove(CutsConstants.DATE_FIRST_LAUNCH);
 		editor.commit();
 	}
 
 	private static void clearRemindPrefs(SharedPreferences.Editor editor) {
-		editor.remove(CutsConstants.getRateRemind());
-		editor.remove(CutsConstants.getCountRemindLaunch());
-		editor.remove(CutsConstants.getDateRemindStart());
+		editor.remove(CutsConstants.RATE_REMIND);
+		editor.remove(CutsConstants.COUNT_REMIND_LAUNCH);
+		editor.remove(CutsConstants.DATE_REMIND_START);
 		editor.commit();
 	}
 
 	private static void clearRatedPrefs(SharedPreferences.Editor editor) {
-		editor.remove(CutsConstants.getRateClickedRate());
-		editor.remove(CutsConstants.getCountRatedLaunch());
-		editor.remove(CutsConstants.getDateRatedStart());
+		editor.remove(CutsConstants.RATE_CLICKED_RATE);
+		editor.remove(CutsConstants.COUNT_RATED_LAUNCH);
+		editor.remove(CutsConstants.DATE_RATED_START);
 		editor.commit();
 	}
 
 	private static void addRemindPrefs(SharedPreferences.Editor editor) {
-		editor.putBoolean(CutsConstants.getRateRemind(), true);
-		editor.putLong(CutsConstants.getDateRemindStart(),
+		editor.putBoolean(CutsConstants.RATE_REMIND, true);
+		editor.putLong(CutsConstants.DATE_REMIND_START,
 				System.currentTimeMillis());
 		editor.commit();
 	}
 
 	private static void addRatedPrefs(SharedPreferences.Editor editor) {
-		editor.putBoolean(CutsConstants.getRateClickedRate(), true);
-		editor.putLong(CutsConstants.getDateRatedStart(),
+		editor.putBoolean(CutsConstants.RATE_CLICKED_RATE, true);
+		editor.putLong(CutsConstants.DATE_RATED_START,
 				System.currentTimeMillis());
 		editor.commit();
 	}
@@ -68,7 +68,7 @@ public class RatingHelper {
 	private static void addDontShowPref(SharedPreferences.Editor editor) {
 		clearRemindPrefs(editor);
 		clearRatedPrefs(editor);
-		editor.putBoolean(CutsConstants.getRateDontShow(), true);
+		editor.putBoolean(CutsConstants.RATE_DONT_SHOW, true);
 		editor.commit();
 	}
 
@@ -77,41 +77,41 @@ public class RatingHelper {
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(mContext);
 		
-		boolean dontShow = prefs.getBoolean(CutsConstants.getRateDontShow(),
+		boolean dontShow = prefs.getBoolean(CutsConstants.RATE_DONT_SHOW,
 				false);
 		if (dontShow)
 			return;
 
-		long appLaunchCount = prefs.getLong(CutsConstants.getCountAppLaunch(),
+		long appLaunchCount = prefs.getLong(CutsConstants.COUNT_APP_LAUNCH,
 				0);
 		long remindLaunchCount = prefs.getLong(
-				CutsConstants.getCountRemindLaunch(), 0);
+				CutsConstants.COUNT_REMIND_LAUNCH, 0);
 		long ratedLaunchCount = prefs.getLong(
-				CutsConstants.getCountRatedLaunch(), 0);
+				CutsConstants.COUNT_RATED_LAUNCH, 0);
 		long appFirstLaunchDate = prefs.getLong(
-				CutsConstants.getDateFirstLaunch(), 0);
+				CutsConstants.DATE_FIRST_LAUNCH, 0);
 		long remindStartDate = prefs.getLong(
-				CutsConstants.getDateRemindStart(), 0);
-		long ratedStartDate = prefs.getLong(CutsConstants.getDateRatedStart(),
+				CutsConstants.DATE_REMIND_START, 0);
+		long ratedStartDate = prefs.getLong(CutsConstants.DATE_RATED_START,
 				0);
 
 		SharedPreferences.Editor editor = prefs.edit();
 
 		boolean ratedClicked = prefs.getBoolean(
-				CutsConstants.getRateClickedRate(), false);
+				CutsConstants.RATE_CLICKED_RATE, false);
 		if (ratedClicked) {
 			long launches = ratedLaunchCount + 1;
-			editor.putLong(CutsConstants.getCountRatedLaunch(), launches);
+			editor.putLong(CutsConstants.COUNT_RATED_LAUNCH, launches);
 
 			if (ratedStartDate == 0) {
 				ratedStartDate = System.currentTimeMillis();
-				editor.putLong(CutsConstants.getDateRatedStart(),
+				editor.putLong(CutsConstants.DATE_RATED_START,
 						ratedStartDate);
 			}
 
-			if (launches >= CutsConstants.getLaunchesRated()) {
+			if (launches >= CutsConstants.LAUNCHES_RATED) {
 				if (System.currentTimeMillis() >= ratedStartDate
-						+ (CutsConstants.getDaysRatedPrompt() * 24 * 60 * 60 * 1000)) {
+						+ (CutsConstants.DAYS_RATED_PROMPT * 24 * 60 * 60 * 1000)) {
 					clearRatedPrefs(editor);
 					showRateDialog(mContext, editor);
 				} else
@@ -122,21 +122,21 @@ public class RatingHelper {
 			return;
 		}
 
-		boolean remindLater = prefs.getBoolean(CutsConstants.getRateRemind(),
+		boolean remindLater = prefs.getBoolean(CutsConstants.RATE_REMIND,
 				false);
 		if (remindLater) {
 			long launches = remindLaunchCount + 1;
-			editor.putLong(CutsConstants.getCountRemindLaunch(), launches);
+			editor.putLong(CutsConstants.COUNT_REMIND_LAUNCH, launches);
 
 			if (remindStartDate == 0) {
 				remindStartDate = System.currentTimeMillis();
-				editor.putLong(CutsConstants.getDateRemindStart(),
+				editor.putLong(CutsConstants.DATE_REMIND_START,
 						remindStartDate);
 			}
 
-			if (launches >= CutsConstants.getLaunchesRemind()) {
+			if (launches >= CutsConstants.LAUNCHES_REMIND) {
 				if (System.currentTimeMillis() >= remindStartDate
-						+ (CutsConstants.getDaysRemindPrompt() * 24 * 60 * 60 * 1000)) {
+						+ (CutsConstants.DAYS_REMIND_PROMPT * 24 * 60 * 60 * 1000)) {
 					clearRemindPrefs(editor);
 					showRateDialog(mContext, editor);
 				} else
@@ -148,17 +148,17 @@ public class RatingHelper {
 		}
 
 		long launches = appLaunchCount + 1;
-		editor.putLong(CutsConstants.getCountAppLaunch(), launches);
+		editor.putLong(CutsConstants.COUNT_APP_LAUNCH, launches);
 
 		if (appFirstLaunchDate == 0) {
 			appFirstLaunchDate = System.currentTimeMillis();
-			editor.putLong(CutsConstants.getDateFirstLaunch(),
+			editor.putLong(CutsConstants.DATE_FIRST_LAUNCH,
 					appFirstLaunchDate);
 		}
 
-		if (launches >= CutsConstants.getLaunchesFirstPrompt()) {
+		if (launches >= CutsConstants.LAUNCHES_FIRST_PROMPT) {
 			if (System.currentTimeMillis() >= appFirstLaunchDate
-					+ (CutsConstants.getDaysFirstPrompt() * 24 * 60 * 60 * 1000)) {
+					+ (CutsConstants.DAYS_FIRST_PROMPT * 24 * 60 * 60 * 1000)) {
 				showRateDialog(mContext, editor);
 			} else
 				editor.commit();

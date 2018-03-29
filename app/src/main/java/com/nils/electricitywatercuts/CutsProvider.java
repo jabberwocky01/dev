@@ -34,8 +34,8 @@ public class CutsProvider extends ContentProvider {
 		Context context = getContext();
 
 		dbHelper = new ElectricityWaterCutsDatabaseHelper(context,
-				CutsConstants.getDatabaseName(), null,
-				CutsConstants.getDatabaseVersion());
+				CutsConstants.DATABASE_NAME, null,
+				CutsConstants.DATABASE_VERSION);
 
 		return true;
 	}
@@ -44,8 +44,8 @@ public class CutsProvider extends ContentProvider {
 	static {
 		SEARCH_PROJECTION_MAP = new HashMap<String, String>();
 		SEARCH_PROJECTION_MAP.put(SearchManager.SUGGEST_COLUMN_TEXT_1,
-				CutsConstants.getKeyDetail() + " AS " + SearchManager.SUGGEST_COLUMN_TEXT_1);
-		SEARCH_PROJECTION_MAP.put("_id", CutsConstants.getKeyId() + " AS " + "_id");
+				CutsConstants.KEY_DETAIL + " AS " + SearchManager.SUGGEST_COLUMN_TEXT_1);
+		SEARCH_PROJECTION_MAP.put("_id", CutsConstants.KEY_ID + " AS " + "_id");
 	}
 
 	// Create the constants used to differentiate between the different URI
@@ -95,15 +95,15 @@ public class CutsProvider extends ContentProvider {
 
 		SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-		qb.setTables(CutsConstants.getCutsTable());
+		qb.setTables(CutsConstants.CUTS_TABLE);
 
 		// If this is a row query, limit the result set to the passed in row.
 		switch (uriMatcher.match(uri)) {
 			case CUTS_ID:
-				qb.appendWhere(CutsConstants.getKeyId() + "=" + uri.getPathSegments().get(1));
+				qb.appendWhere(CutsConstants.KEY_ID + "=" + uri.getPathSegments().get(1));
 				break;
 			case SEARCH:
-				qb.appendWhere(CutsConstants.getKeyDetail() + " LIKE \"%"
+				qb.appendWhere(CutsConstants.KEY_DETAIL + " LIKE \"%"
 						+ uri.getPathSegments().get(1) + "%\"");
 				qb.setProjectionMap(SEARCH_PROJECTION_MAP);
 				break;
@@ -114,7 +114,7 @@ public class CutsProvider extends ContentProvider {
 		// If no sort order is specified, sort by date / time
 		String orderBy;
 		if (TextUtils.isEmpty(sort)) {
-			orderBy = CutsConstants.getKeyEndDate();
+			orderBy = CutsConstants.KEY_END_DATE;
 		} else {
 			orderBy = sort;
 		}
@@ -139,12 +139,12 @@ public class CutsProvider extends ContentProvider {
 		// number
 		// if it is successful.
 		long rowID = database.insert(
-				CutsConstants.getCutsTable(), "cut",
+				CutsConstants.CUTS_TABLE, "cut",
 				_initialValues);
 
 		// Return a URI to the newly inserted row on success.
 		if (rowID > 0) {
-			Uri uri = ContentUris.withAppendedId(CutsConstants.getContentUri(), rowID);
+			Uri uri = ContentUris.withAppendedId(CutsConstants.CONTENT_URI, rowID);
 			getContext().getContentResolver().notifyChange(uri, null);
 			return uri;
 		}
@@ -161,13 +161,13 @@ public class CutsProvider extends ContentProvider {
 		switch (uriMatcher.match(uri)) {
 			case CUTS:
 				count = database.delete(
-						CutsConstants.getCutsTable(), where,
+						CutsConstants.CUTS_TABLE, where,
 						whereArgs);
 				break;
 			case CUTS_ID:
 				String segment = uri.getPathSegments().get(1);
 				count = database.delete(
-						CutsConstants.getCutsTable(), CutsConstants.getKeyId()
+						CutsConstants.CUTS_TABLE, CutsConstants.KEY_ID
 								+ "="
 								+ segment
 								+ (!TextUtils.isEmpty(where) ? " AND (" + where
@@ -192,14 +192,14 @@ public class CutsProvider extends ContentProvider {
 		switch (uriMatcher.match(uri)) {
 		case CUTS:
 			count = database.update(
-					CutsConstants.getCutsTable(), values,
+					CutsConstants.CUTS_TABLE, values,
 					where, whereArgs);
 			break;
 		case CUTS_ID:
 			String segment = uri.getPathSegments().get(1);
 			count = database.update(
-					CutsConstants.getCutsTable(), values,
-					CutsConstants.getKeyId()
+					CutsConstants.CUTS_TABLE, values,
+					CutsConstants.KEY_ID
 							+ "="
 							+ segment
 							+ (!TextUtils.isEmpty(where) ? " AND (" + where
@@ -218,13 +218,13 @@ public class CutsProvider extends ContentProvider {
 			SQLiteOpenHelper {
 		
 		private static final String CUTS_DATABASE_CREATE = "create table "
-				+ CutsConstants.getCutsTable() + " (" + CutsConstants.getKeyId()
-				+ " integer primary key autoincrement, " + CutsConstants.getKeyOperatorName()
-				+ " TEXT, " + CutsConstants.getKeyStartDate() + " TEXT, " + CutsConstants.getKeyEndDate()
-				+ " TEXT, " + CutsConstants.getKeyLocation() + " TEXT, " + CutsConstants.getKeyReason()
-				+ " TEXT, " + CutsConstants.getKeyDetail() + " TEXT, " + CutsConstants.getKeyType() 
-				+ " TEXT, "  + CutsConstants.getKeySearchText() + " TEXT, " + CutsConstants.getKeyOrderStartDate()
-				+ " TEXT, " + CutsConstants.getKeyOrderEndDate() + " TEXT, " + CutsConstants.getKeyIsCurrent() + " TEXT);";
+				+ CutsConstants.CUTS_TABLE + " (" + CutsConstants.KEY_ID
+				+ " integer primary key autoincrement, " + CutsConstants.KEY_OPERATOR_NAME
+				+ " TEXT, " + CutsConstants.KEY_START_DATE + " TEXT, " + CutsConstants.KEY_END_DATE
+				+ " TEXT, " + CutsConstants.KEY_LOCATION + " TEXT, " + CutsConstants.KEY_REASON
+				+ " TEXT, " + CutsConstants.KEY_DETAIL + " TEXT, " + CutsConstants.KEY_TYPE
+				+ " TEXT, "  + CutsConstants.KEY_SEARCH_TEXT + " TEXT, " + CutsConstants.KEY_ORDER_START_DATE
+				+ " TEXT, " + CutsConstants.KEY_ORDER_END_DATE + " TEXT, " + CutsConstants.KEY_IS_CURRENT + " TEXT);";
 
 		public ElectricityWaterCutsDatabaseHelper(Context context, String name,
 				CursorFactory factory, int version) {
@@ -239,7 +239,7 @@ public class CutsProvider extends ContentProvider {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-			db.execSQL("DROP TABLE IF EXISTS " + CutsConstants.getCutsTable());
+			db.execSQL("DROP TABLE IF EXISTS " + CutsConstants.CUTS_TABLE);
 			onCreate(db);
 			
 			// upgrade from v1

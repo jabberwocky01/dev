@@ -59,7 +59,7 @@ public class MainActivity extends ActionBarActivity implements
 	public void createShortCut() {
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean dontCreateShortcut = prefs.getBoolean(CutsConstants.getInstallShortcut(),
+		boolean dontCreateShortcut = prefs.getBoolean(CutsConstants.INSTALL_SHORTCUT,
 				false);
 		if (dontCreateShortcut)
 			return;
@@ -82,7 +82,7 @@ public class MainActivity extends ActionBarActivity implements
 		// set pref
 		dontCreateShortcut = true;
 		SharedPreferences.Editor editor = prefs.edit();
-		editor.putBoolean(CutsConstants.getInstallShortcut(), dontCreateShortcut);
+		editor.putBoolean(CutsConstants.INSTALL_SHORTCUT, dontCreateShortcut);
 		editor.commit();
 		// sendBroadcast,done
 		sendBroadcast(shortcutIntent);
@@ -90,17 +90,17 @@ public class MainActivity extends ActionBarActivity implements
 	
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-	    if (CutsConstants.getPrefOrderCriteria().equals(key) || 
-	    	CutsConstants.getPrefOrder().equals(key) ||
-	    	CutsConstants.getPrefRange().equals(key)) {
+	    if (CutsConstants.PREF_ORDER_CRITERIA.equals(key) ||
+	    	CutsConstants.PREF_ORDER.equals(key) ||
+	    	CutsConstants.PREF_RANGE.equals(key)) {
 	    	refreshCutsList();
-	    } else if (CutsConstants.getPrefLang().equals(key)) {
-	    	String lang = prefs.getString(CutsConstants.getPrefLang(), "tr");
+	    } else if (CutsConstants.PREF_LANG.equals(key)) {
+	    	String lang = prefs.getString(CutsConstants.PREF_LANG, "tr");
 	    	setLocale(lang, true);
-	    } else if (CutsConstants.getPrefFreq().equals(key)) {	    	
+	    } else if (CutsConstants.PREF_FREQ.equals(key)) {
 	   	    Intent startIntent = new Intent(getApplicationContext(), CutsUpdateService.class);
-	   	    String freqPreferenceStr = prefs.getString(CutsConstants.getPrefFreq(), "1");
-	   	    startIntent.putExtra(CutsConstants.getIntentCutsFreq(), freqPreferenceStr);
+	   	    String freqPreferenceStr = prefs.getString(CutsConstants.PREF_FREQ, "1");
+	   	    startIntent.putExtra(CutsConstants.INTENT_CUTS_FREQ, freqPreferenceStr);
 	   	    getApplicationContext().startService(startIntent);
 	    }
 	}	
@@ -188,7 +188,7 @@ public class MainActivity extends ActionBarActivity implements
     private String getAppLanguage() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
-		String lang = prefs.getString(CutsConstants.getPrefLang(), "tr");
+		String lang = prefs.getString(CutsConstants.PREF_LANG, "tr");
 		return lang;
     }
     
