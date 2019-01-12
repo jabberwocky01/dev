@@ -6,7 +6,6 @@ android {
     defaultConfig {
         applicationId "com.nils.electricitywatercuts"
         minSdkVersion 14
-        targetSdkVersion 27
     }
 
     buildTypes {
