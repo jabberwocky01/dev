@@ -3,26 +3,6 @@
  */
 package com.nils.electricitywatercuts;
 
-import java.io.IOException;
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.jsoup.Jsoup;
-import org.jsoup.helper.StringUtil;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.Notification;
@@ -44,12 +24,29 @@ import android.support.v4.app.NotificationCompat;
 import android.text.format.DateUtils;
 import android.util.DisplayMetrics;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.StandardExceptionParser;
 import com.nils.electricitywatercuts.com.nils.electricitywatercuts.model.EuropeElectricityData;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author NilS
@@ -413,35 +410,39 @@ public class CutsUpdateService extends IntentService {
 			Elements cutItemsList = document.select("table.table-bordered td");
 
 			for (int i = 2; i < cutItemsList.size(); i+=16) {
-				// get value
-				String operatorName = cutItemsList.get(i).text();
-				String location = cutItemsList.get(i+3).text();
-				String reason = cutItemsList.get(i+6).text();
-				String startDate = cutItemsList.get(i+9).text();
-				String[] dateArr = startDate.split(" - ");
-				startDate = dateArr[0];
-				startDate = cutsHelper.formatDate(startDate, "d.M.yyyy", "dd.MM.yyyy");
-				String startHour = dateArr[1];
+				try {
+					// get value
+					String operatorName = cutItemsList.get(i).text();
+					String location = cutItemsList.get(i + 3).text();
+					String reason = cutItemsList.get(i + 6).text();
+					String startDate = cutItemsList.get(i + 9).text();
+					String[] dateArr = startDate.split(" - ");
+					startDate = dateArr[0];
+					startDate = cutsHelper.formatDate(startDate, "d.M.yyyy", "dd.MM.yyyy");
+					String startHour = dateArr[1];
 
-				String endDateTime = cutItemsList.get(i+12).text();
-				String endDate = endDateTime.substring(endDateTime.indexOf("olarak ")+7);
-				endDate = endDate.substring(0, endDate.indexOf(" "));
-				endDate = cutsHelper.formatDate(endDate, "d.M.yyyy", "dd.MM.yyyy");
-				String endHour = endDateTime.substring(endDateTime.indexOf("saat ")+5);
-				endHour = endHour.substring(0, endHour.indexOf(" "));
+					String endDateTime = cutItemsList.get(i + 12).text();
+					String endDate = endDateTime.substring(endDateTime.indexOf("olarak ") + 7);
+					endDate = endDate.substring(0, endDate.indexOf(" "));
+					endDate = cutsHelper.formatDate(endDate, "d.M.yyyy", "dd.MM.yyyy");
+					String endHour = endDateTime.substring(endDateTime.indexOf("saat ") + 5);
+					endHour = endHour.substring(0, endHour.indexOf(" "));
 
-				Cuts cut = new Cuts();
-				cut.setType("w");
-				cut.setIconResourceId(R.drawable.water);
-				cut.setOperatorName(operatorName);
-				cut.setReason(reason);
-				cut.setStartDate(startDate + " " + startHour);
-				cut.setEndDate(endDate + " " + endHour);
-				cut.setLocation(location);
-				cut.setDetail(operatorName + ' ' + startDate + "-" + endDate + " " + location + " " + reason);
+					Cuts cut = new Cuts();
+					cut.setType("w");
+					cut.setIconResourceId(R.drawable.water);
+					cut.setOperatorName(operatorName);
+					cut.setReason(reason);
+					cut.setStartDate(startDate + " " + startHour);
+					cut.setEndDate(endDate + " " + endHour);
+					cut.setLocation(location);
+					cut.setDetail(operatorName + ' ' + startDate + "-" + endDate + " " + location + " " + reason);
 
-				// Process a newly found cut
-				waterCuts.add(cut);
+					// Process a newly found cut
+					waterCuts.add(cut);
+				} catch (Exception e) {
+					sendToGoogleAnalytics(e);
+				}
 			}
 		} catch (IOException e) {
 			//e.printStackTrace();

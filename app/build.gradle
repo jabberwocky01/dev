@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 27
 
     defaultConfig {
         applicationId "com.nils.electricitywatercuts"
-        minSdkVersion 8
-        targetSdkVersion 19
+        minSdkVersion 14
+        targetSdkVersion 27
     }
 
     buildTypes {
@@ -27,10 +27,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:19.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'org.jsoup:jsoup:1.11.2'
-    compile files('libs/libGoogleAnalyticsServices.jar')
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.8.5'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
+    implementation files('libs/libGoogleAnalyticsServices.jar')
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
 }

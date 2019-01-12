@@ -1,7 +1,5 @@
 package com.nils.electricitywatercuts;
 
-import java.util.Locale;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -13,7 +11,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.DisplayMetrics;
 import android.view.Menu;
@@ -21,7 +19,9 @@ import android.view.MenuItem;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
-public class MainActivity extends ActionBarActivity implements
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity implements
 	OnSharedPreferenceChangeListener {
 
 	private Locale appLocale = null;
